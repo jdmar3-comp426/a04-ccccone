@@ -52,7 +52,7 @@ app.get("/app/user/:id", (req, res) => {
 app.patch("/app/update/user/:id", (req, res) => {
 	let id = req.params.id;
 	let username = req.body.user;
-	let password = req.body.pass;
+	let password = md5(req.body.pass);
 	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?");
 	const info = stmt.run(username, password, id);
 	res.status(200).json({"message":`1 record updated: ID ${id} (200)`});
