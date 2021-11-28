@@ -32,7 +32,7 @@ app.post("/app/new", (req, res) => {
 
 	const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)');
 	const info = stmt.run(username, password);
-	res.status(200).json({"message":`1 record createed: ID ${info.lastInsertRowid} (201)`});
+	res.status(201).json({"message":`1 record createed: ID ${info.lastInsertRowid} (201)`});
 });
 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
