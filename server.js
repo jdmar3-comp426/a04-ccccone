@@ -28,7 +28,7 @@ app.get("/app/", (req, res, next) => {
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
 app.post("/app/new", (req, res) => {
 	let username = req.body.user;
-	let password = req.body.pass;
+	let password = md5(req.body.pass);
 
 	const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)');
 	const info = stmt.run(username, password);
